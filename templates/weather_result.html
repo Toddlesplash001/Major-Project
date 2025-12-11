@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Results - KisanMittara AI</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #e8f5e8 0%, #f0f8f0 50%, #e8f5e8 100%);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .weather-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 0;
+        }
+        
+        .weather-card {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            width: 100%;
+            margin: 0 1rem;
+        }
+        
+        .weather-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .weather-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+        
+        .city-name {
+            font-size: 1.5rem;
+            color: #7f8c8d;
+            margin-bottom: 2rem;
+        }
+        
+        .weather-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+        
+        .weather-main {
+            background: linear-gradient(135deg, #e3f2fd 0%, #f0f8ff 100%);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 2px solid #2196f3;
+        }
+        
+        .weather-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .weather-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .weather-label {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            margin-bottom: 0.5rem;
+        }
+        
+        .weather-value {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .alerts-section {
+            margin: 2rem 0;
+        }
+        
+        .alert-card {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+        
+        .alert-card.warning {
+            background: #f8d7da;
+            border-color: #f5c6cb;
+        }
+        
+        .alert-card.success {
+            background: #d4edda;
+            border-color: #c3e6cb;
+        }
+        
+        .alert-title {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+        
+        .alert-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .alert-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        .alert-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .back-btn {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            color: #2c3e50;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .back-btn:hover {
+            background: white;
+            color: #2c3e50;
+            text-decoration: none;
+            transform: translateY(-2px);
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .btn-primary-custom {
+            background: linear-gradient(45deg, #28a745, #20c997);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            color: white;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+        }
+        
+        .btn-primary-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+            color: white;
+            text-decoration: none;
+        }
+        
+        @media (max-width: 768px) {
+            .weather-card {
+                padding: 2rem;
+                margin: 1rem;
+            }
+            
+            .weather-title {
+                font-size: 2rem;
+            }
+            
+            .weather-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .back-btn {
+                position: relative;
+                top: auto;
+                left: auto;
+                margin-bottom: 2rem;
+                display: inline-block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="/web/services" class="back-btn">
+        <i class="fas fa-arrow-left me-2"></i>Back to Services
+    </a>
+    
+    <div class="weather-container">
+        <div class="weather-card">
+            <div class="weather-header">
+                <div class="weather-icon">🌦️</div>
+                <h1 class="weather-title">Weather Report</h1>
+                <p class="city-name">{{ city }}</p>
+            </div>
+            
+            {% if weather.error %}
+                <div class="alert-card warning">
+                    <div class="alert-title">
+                        <i class="fas fa-exclamation-triangle me-2"></i>Error
+                    </div>
+                    <p>{{ weather.error }}</p>
+                </div>
+            {% else %}
+                <div class="weather-main">
+                    <div class="weather-grid">
+                        <div class="weather-item">
+                            <div class="weather-label">Temperature</div>
+                            <div class="weather-value">{{ weather.temperature }}°C</div>
+                        </div>
+                        <div class="weather-item">
+                            <div class="weather-label">Humidity</div>
+                            <div class="weather-value">{{ weather.humidity }}%</div>
+                        </div>
+                        <div class="weather-item">
+                            <div class="weather-label">Condition</div>
+                            <div class="weather-value">{{ weather.condition }}</div>
+                        </div>
+                        <div class="weather-item">
+                            <div class="weather-label">Wind Speed</div>
+                            <div class="weather-value">{{ weather.wind_speed }} m/s</div>
+                        </div>
+                        <div class="weather-item">
+                            <div class="weather-label">Cloud Cover</div>
+                            <div class="weather-value">{{ weather.clouds }}%</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="alerts-section">
+                    <div class="alert-card">
+                        <div class="alert-title">
+                            <i class="fas fa-exclamation-circle me-2"></i>General Weather Alerts
+                        </div>
+                        {% if general_alerts %}
+                            <ul class="alert-list">
+                                {% for msg in general_alerts %}
+                                    <li>{{ msg }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <p>No major weather alerts.</p>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="alert-card success">
+                        <div class="alert-title">
+                            <i class="fas fa-seedling me-2"></i>Crop-Specific Alerts
+                        </div>
+                        {% if alerts %}
+                            <ul class="alert-list">
+                                {% for msg in alerts %}
+                                    <li>{{ msg }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <p>No crop alerts today.</p>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endif %}
+            
+            <div class="action-buttons">
+                <a href="/web/services" class="btn-primary-custom">
+                    <i class="fas fa-home me-2"></i>Back to Services
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>🌾 General Farming Chatbot</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+        flowise-fullchatbot {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Full Flowise Chatbot -->
+    <flowise-fullchatbot></flowise-fullchatbot>
+
+    <script type="module">
+        import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js"
+        Chatbot.initFull({
+            chatflowid: "be5b7ce3-78b1-4067-80e8-09b497c3f820",
+            apiHost: "https://1b0253de148a.ngrok-free.app",
+        })
+    </script>
+</body>
+</html>

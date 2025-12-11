@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Recommendation - KisanMittara AI</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #e8f5e8 0%, #f0f8f0 50%, #e8f5e8 100%);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .form-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 0;
+        }
+        
+        .form-card {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+            margin: 0 1rem;
+        }
+        
+        .form-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+        
+        .form-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-subtitle {
+            color: #7f8c8d;
+            font-size: 1.1rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-label {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        
+        .form-control {
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 0.8rem 1rem;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background-color: white !important;
+            cursor: text;
+            user-select: text;
+            pointer-events: auto;
+            -webkit-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .form-control:disabled {
+            background-color: #f8f9fa !important;
+            cursor: not-allowed;
+        }
+        
+        .form-control[readonly] {
+            background-color: #f8f9fa !important;
+            cursor: not-allowed;
+        }
+        
+        .form-control:focus {
+            border-color: #28a745;
+            box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+        }
+        
+        .submit-btn {
+            background: linear-gradient(45deg, #28a745, #20c997);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            color: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+            width: 100%;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+        }
+        
+        .back-btn {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            color: #2c3e50;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .back-btn:hover {
+            background: white;
+            color: #2c3e50;
+            text-decoration: none;
+            transform: translateY(-2px);
+        }
+        
+        .input-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        .form-text {
+            font-size: 0.85rem;
+            margin-top: 0.25rem;
+            color: #6c757d;
+        }
+        
+        @media (max-width: 768px) {
+            .form-card {
+                padding: 2rem;
+                margin: 1rem;
+            }
+            
+            .form-title {
+                font-size: 2rem;
+            }
+            
+            .input-group {
+                grid-template-columns: 1fr;
+            }
+            
+            .back-btn {
+                position: relative;
+                top: auto;
+                left: auto;
+                margin-bottom: 2rem;
+                display: inline-block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="/web/services" class="back-btn">
+        <i class="fas fa-arrow-left me-2"></i>Back to Services
+    </a>
+    
+    <div class="form-container">
+        <div class="form-card">
+            <div class="form-header">
+                <h1 class="form-title">🌱 Crop Recommendation</h1>
+                <p class="form-subtitle">Enter your soil and weather data to get AI-powered crop recommendations</p>
+            </div>
+            
+            <form action="/web/crop" method="post">
+                <div class="input-group">
+                    <div class="form-group">
+                        <label for="N" class="form-label">
+                            <i class="fas fa-atom me-2"></i>Nitrogen (N) - mg/kg
+                        </label>
+                        <input type="number" step="0.1" id="N" name="N" class="form-control" 
+                               placeholder="Enter N value (0-300)" required>
+                        <small class="form-text text-muted">Typical range: 0-300 mg/kg</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="P" class="form-label">
+                            <i class="fas fa-circle me-2"></i>Phosphorus (P) - mg/kg
+                        </label>
+                        <input type="number" step="0.1" id="P" name="P" class="form-control" 
+                               placeholder="Enter P value (0-300)" required>
+                        <small class="form-text text-muted">Typical range: 0-300 mg/kg</small>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <div class="form-group">
+                        <label for="K" class="form-label">
+                            <i class="fas fa-circle me-2"></i>Potassium (K) - mg/kg
+                        </label>
+                        <input type="number" step="0.1" id="K" name="K" class="form-control" 
+                               placeholder="Enter K value (0-300)" required>
+                        <small class="form-text text-muted">Typical range: 0-300 mg/kg</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="temperature" class="form-label">
+                            <i class="fas fa-thermometer-half me-2"></i>Temperature (°C)
+                        </label>
+                        <input type="number" step="0.1" id="temperature" name="temperature" class="form-control" 
+                               placeholder="Enter temperature (-50 to 60°C)" required>
+                        <small class="form-text text-muted">Typical range: -50 to 60°C</small>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <div class="form-group">
+                        <label for="humidity" class="form-label">
+                            <i class="fas fa-tint me-2"></i>Humidity (%)
+                        </label>
+                        <input type="number" step="0.1" id="humidity" name="humidity" class="form-control" 
+                               placeholder="Enter humidity (0-100%)" required>
+                        <small class="form-text text-muted">Typical range: 0-100%</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="ph" class="form-label">
+                            <i class="fas fa-flask me-2"></i>pH Level
+                        </label>
+                        <input type="number" step="0.1" id="ph" name="ph" class="form-control" 
+                               placeholder="Enter pH value (0-14)" required>
+                        <small class="form-text text-muted">Typical range: 0-14 (7 is neutral)</small>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="rainfall" class="form-label">
+                        <i class="fas fa-cloud-rain me-2"></i>Rainfall (mm)
+                    </label>
+                    <input type="number" step="0.1" id="rainfall" name="rainfall" class="form-control" 
+                           placeholder="Enter rainfall amount (0-5000mm)" required>
+                    <small class="form-text text-muted">Typical range: 0-5000mm annually</small>
+                </div>
+                
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-seedling me-2"></i>Get Crop Recommendation
+                </button>
+            </form>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Debug script to check input functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Page loaded, checking inputs...');
+            
+            const inputs = document.querySelectorAll('input[type="number"]');
+            console.log('Found', inputs.length, 'number inputs');
+            
+            inputs.forEach((input, index) => {
+                console.log('Input', index, ':', input.id, 'disabled:', input.disabled, 'readonly:', input.readOnly);
+                
+                input.addEventListener('focus', function() {
+                    console.log('Input', this.id, 'focused');
+                });
+                
+                input.addEventListener('click', function() {
+                    console.log('Input', this.id, 'clicked');
+                });
+                
+                input.addEventListener('input', function() {
+                    console.log('Input', this.id, 'value changed to:', this.value);
+                });
+                
+                input.addEventListener('keydown', function(e) {
+                    console.log('Input', this.id, 'key pressed:', e.key);
+                });
+            });
+            
+            // Test if we can programmatically set values
+            setTimeout(() => {
+                const firstInput = document.getElementById('N');
+                if (firstInput) {
+                    firstInput.value = '100';
+                    firstInput.focus();
+                    console.log('Set test value and focused first input');
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

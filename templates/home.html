@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KisanMittara AI - Services</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #e8f5e8 0%, #f0f8f0 50%, #e8f5e8 100%);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .services-container {
+            min-height: 100vh;
+            padding: 4rem 0;
+        }
+        
+        .page-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .page-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+        
+        .page-subtitle {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+            margin-bottom: 2rem;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1.2rem;
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(45deg, #28a745, #20c997);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .service-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+        
+        .service-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+        
+        .service-description {
+            color: #7f8c8d;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+        
+        .service-btn {
+            background: linear-gradient(45deg, #28a745, #20c997);
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            color: white;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+            margin-top: auto;
+        }
+        
+        .service-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+            color: white;
+            text-decoration: none;
+        }
+        
+        .back-btn {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            color: #2c3e50;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .back-btn:hover {
+            background: white;
+            color: #2c3e50;
+            text-decoration: none;
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 1400px) {
+            .services-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1.2rem;
+            }
+        }
+        
+        @media (max-width: 1000px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2.5rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+                padding: 0 1rem;
+            }
+            
+            .service-card {
+                padding: 2rem 1.5rem;
+            }
+            
+            .back-btn {
+                position: relative;
+                top: auto;
+                left: auto;
+                margin-bottom: 2rem;
+                display: inline-block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="services-container">
+        <a href="/" class="back-btn">
+            <i class="fas fa-arrow-left me-2"></i>Back to Home
+        </a>
+        
+        <div class="page-header">
+            <h1 class="page-title">🌾 KisanMittara AI</h1>
+            <p class="page-subtitle">Choose the service you need for your farming journey</p>
+        </div>
+        
+        <div class="services-grid">
+            <div class="service-card">
+                <span class="service-icon">🌱</span>
+                <h3 class="service-title">Crop Recommendation System</h3>
+                <p class="service-description">
+                    Get AI-powered crop recommendations based on your soil conditions, 
+                    weather data, and farming requirements. Maximize your yield with 
+                    data-driven decisions.
+                </p>
+                <a href="/web/crop_form" class="service-btn">
+                    <i class="fas fa-seedling me-2"></i>Get Started
+                </a>
+            </div>
+            
+            <div class="service-card">
+                <span class="service-icon">🌿</span>
+                <h3 class="service-title">Fertilizer Recommendation System</h3>
+                <p class="service-description">
+                    Optimize your soil nutrition with smart fertilizer recommendations. 
+                    Get personalized suggestions based on your soil's NPK levels and 
+                    crop requirements.
+                </p>
+                <a href="/web/fertilizer_form" class="service-btn">
+                    <i class="fas fa-leaf me-2"></i>Get Started
+                </a>
+            </div>
+            
+            <div class="service-card">
+                <span class="service-icon">🌦️</span>
+                <h3 class="service-title">Weather Service & Crop Alerts</h3>
+                <p class="service-description">
+                    Stay ahead with real-time weather monitoring and crop-specific alerts. 
+                    Protect your crops from adverse weather conditions with timely warnings.
+                </p>
+                <a href="/web/weather_form" class="service-btn">
+                    <i class="fas fa-cloud-sun me-2"></i>Get Started
+                </a>
+            </div>
+            
+            <div class="service-card">
+                <span class="service-icon">🤖</span>
+                <h3 class="service-title">AI Chatbot Services</h3>
+                <p class="service-description">
+                    Get instant answers to your farming questions with our intelligent 
+                    AI assistant. Available 24/7 to help with crop management, 
+                    pest control, and general farming advice.
+                </p>
+                <a href="/web/flowise" class="service-btn">
+                    <i class="fas fa-robot me-2"></i>Get Started
+                </a>
+            </div>
+            
+            <div class="service-card">
+                <span class="service-icon">🔍</span>
+                <h3 class="service-title">Pest/Disease Identification</h3>
+                <p class="service-description">
+                    Upload images of your crops to identify pests and diseases. 
+                    Get instant diagnosis and treatment recommendations to protect 
+                    your plants and maximize your harvest.
+                </p>
+                <a href="/web/pest_disease" class="service-btn">
+                    <i class="fas fa-camera me-2"></i>Get Started
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

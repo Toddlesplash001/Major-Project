@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fertilizer Recommendation - KisanMittara AI</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #e8f5e8 0%, #f0f8f0 50%, #e8f5e8 100%);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .form-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 0;
+        }
+        
+        .form-card {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+            margin: 0 1rem;
+        }
+        
+        .form-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+        
+        .form-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-subtitle {
+            color: #7f8c8d;
+            font-size: 1.1rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-label {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        
+        .form-control {
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 0.8rem 1rem;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background-color: white;
+            cursor: text;
+            user-select: text;
+        }
+        
+        .form-control:focus {
+            border-color: #28a745;
+            box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+        }
+        
+        .submit-btn {
+            background: linear-gradient(45deg, #28a745, #20c997);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            color: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+            width: 100%;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+        }
+        
+        .back-btn {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            color: #2c3e50;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .back-btn:hover {
+            background: white;
+            color: #2c3e50;
+            text-decoration: none;
+            transform: translateY(-2px);
+        }
+        
+        .nutrient-info {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid #28a745;
+        }
+        
+        .nutrient-info h4 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+        
+        .nutrient-info p {
+            color: #7f8c8d;
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-text {
+            font-size: 0.85rem;
+            margin-top: 0.25rem;
+            color: #6c757d;
+        }
+        
+        @media (max-width: 768px) {
+            .form-card {
+                padding: 2rem;
+                margin: 1rem;
+            }
+            
+            .form-title {
+                font-size: 2rem;
+            }
+            
+            .back-btn {
+                position: relative;
+                top: auto;
+                left: auto;
+                margin-bottom: 2rem;
+                display: inline-block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="/web/services" class="back-btn">
+        <i class="fas fa-arrow-left me-2"></i>Back to Services
+    </a>
+    
+    <div class="form-container">
+        <div class="form-card">
+            <div class="form-header">
+                <h1 class="form-title">🌿 Fertilizer Recommendation</h1>
+                <p class="form-subtitle">Enter your soil NPK levels to get personalized fertilizer recommendations</p>
+            </div>
+            
+            <div class="nutrient-info">
+                <h4><i class="fas fa-info-circle me-2"></i>Understanding NPK Values</h4>
+                <p><strong>Nitrogen (N):</strong> Promotes leaf growth and green color</p>
+                <p><strong>Phosphorus (P):</strong> Supports root development and flowering</p>
+                <p><strong>Potassium (K):</strong> Enhances fruit quality and disease resistance</p>
+            </div>
+            
+            <form action="/web/fertilizer" method="post">
+                <div class="form-group">
+                    <label for="N" class="form-label">
+                        <i class="fas fa-atom me-2"></i>Nitrogen (N) Level - mg/kg
+                    </label>
+                    <input type="number" step="0.1" id="N" name="N" class="form-control" 
+                           placeholder="Enter N value (0-300)" required>
+                    <small class="form-text text-muted">Typical range: 0-300 mg/kg</small>
+                </div>
+                
+                <div class="form-group">
+                    <label for="P" class="form-label">
+                        <i class="fas fa-circle me-2"></i>Phosphorus (P) Level - mg/kg
+                    </label>
+                    <input type="number" step="0.1" id="P" name="P" class="form-control" 
+                           placeholder="Enter P value (0-300)" required>
+                    <small class="form-text text-muted">Typical range: 0-300 mg/kg</small>
+                </div>
+                
+                <div class="form-group">
+                    <label for="K" class="form-label">
+                        <i class="fas fa-circle me-2"></i>Potassium (K) Level - mg/kg
+                    </label>
+                    <input type="number" step="0.1" id="K" name="K" class="form-control" 
+                           placeholder="Enter K value (0-300)" required>
+                    <small class="form-text text-muted">Typical range: 0-300 mg/kg</small>
+                </div>
+                
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-leaf me-2"></i>Get Fertilizer Recommendation
+                </button>
+            </form>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
